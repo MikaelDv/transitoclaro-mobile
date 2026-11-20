@@ -3,7 +3,7 @@
 > Global Solution 2026.2 · FIAP · Engenharia de Software · **Mobile Development & IOT**
 > Stack: React Native + TypeScript · Expo SDK 58 · Expo Router · expo-sqlite · consumo da API REST TransitoClaro (repo SOA)
 
-🎥 **Vídeo (até 3 min) com o app rodando:** _COLE AQUI O LINK DO YOUTUBE_
+🎥 **Vídeo (até 3 min) com o app rodando:** [Clique aqui.](https://youtu.be/KUccoCRbmfI)
 
 ## Integrantes
 
