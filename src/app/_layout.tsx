@@ -1,18 +1,23 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { Cores } from '@/constants/theme';
+import { PreferenciasProvider } from '@/context/preferencias';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <PreferenciasProvider>
+      <StatusBar style="dark" />
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: Cores.cartao },
+          headerTintColor: Cores.primaria,
+          headerTitleStyle: { color: Cores.texto, fontWeight: '700' },
+          contentStyle: { backgroundColor: Cores.fundo },
+        }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="linha/[id]" options={{ title: 'Detalhes da linha', headerBackTitle: 'Voltar' }} />
+      </Stack>
+    </PreferenciasProvider>
   );
 }

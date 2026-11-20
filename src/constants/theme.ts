@@ -1,65 +1,30 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
- */
+// Paleta de alto contraste (WCAG AA) pensada para uso na rua, com sol na tela.
+export const Cores = {
+  fundo: '#F4F5F7',
+  cartao: '#FFFFFF',
+  texto: '#14161A',
+  textoSecundario: '#4A505C',
+  borda: '#D5D9E0',
+  primaria: '#B00D47', // magenta FIAP escurecido para contraste 4.5:1 com branco
+  primariaTexto: '#FFFFFF',
+  normal: '#0B7A3E',
+  normalFundo: '#E3F5EA',
+  moderado: '#8A5A00',
+  moderadoFundo: '#FFF2D6',
+  critico: '#B3261E',
+  criticoFundo: '#FDE4E2',
+  aviso: '#7A4B00',
+  avisoFundo: '#FFF4D6',
+};
 
-import '@/global.css';
+export type StatusLinha = 'NORMAL' | 'MODERADO' | 'CRITICO';
 
-import { Platform } from 'react-native';
+// Status nunca e comunicado so por cor: sempre icone + palavra.
+export const STATUS_VISUAL: Record<StatusLinha, { cor: string; fundo: string; icone: string; rotulo: string }> = {
+  NORMAL: { cor: Cores.normal, fundo: Cores.normalFundo, icone: '✓', rotulo: 'Normal' },
+  MODERADO: { cor: Cores.moderado, fundo: Cores.moderadoFundo, icone: '!', rotulo: 'Atenção' },
+  CRITICO: { cor: Cores.critico, fundo: Cores.criticoFundo, icone: '✕', rotulo: 'Problema grave' },
+};
 
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
-} as const;
-
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
-
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
-
-export const Spacing = {
-  half: 2,
-  one: 4,
-  two: 8,
-  three: 16,
-  four: 24,
-  five: 32,
-  six: 64,
-} as const;
-
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const Espaco = { xs: 4, sm: 8, md: 16, lg: 24 };
+export const TOQUE_MINIMO = 48; // area minima de toque recomendada (Android/WCAG)
